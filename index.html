@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Uçan Bizon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="assets/img/logo.png" alt="Uçan Bizon Logo" />
+    </div>
+    <nav class="social-links">
+      <a href="https://t.me/BizonAviator"><i class="fa-brands fa-telegram"></i> Telegram</a>
+      <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fa-brands fa-skype"></i> Skype</a>
+    </nav>
+  </header>
+  
+  <section class="ad-section">
+  <a href="#" target="_blank" rel="noopener noreferrer">
+    <img src="assets/img/reklamalanı.png" alt="Reklam 1" />
+	 <a href="#" target="_blank" rel="noopener noreferrer">
+    <img src="assets/img/reklamalanı.png" alt="Reklam 2" />
+	 <a href="#" target="_blank" rel="noopener noreferrer">
+    <img src="assets/img/reklamalanı.png" alt="Reklam 3" />
+  </a>
+
+</section>
+
+  <!-- reklamlar -->
+
+  <section class="card-list">
+    <div class="card">
+      <img src="assets/img/logo1.png" alt="Site 1" class="card-icon" />
+      <h2>ÖRNEK SPONSOR</h2>
+      <p>Linkten Üye Olanlara 2 BET 100FS</p>
+      <p>Ertesi Gün Hediye Freespin Bonusu</p>
+      <p>%20'ye varan Casino Kayıp Bonusu</p>
+      <a href="#" class="btn">Giriş Yap</a>
+      <a href="https://t.me/BizonAviator" class="card-link">VİP SPONSOR</a>
+    </div>
+  </section>
+  
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="assets/img/logo.png" alt="Uçan Bizon Logo" />
+    </div>
+    <p>Copyright © 2024 - Uçan Bizon</p>
+    <div class="footer-social">
+      <a href="https://t.me/kendihalindegrafikci"><i class="fa-brands fa-skype"></i> Skype</a>
+      <a href="https://t.me/BizonAviator"><i class="fa-brands fa-telegram"></i> Telegram</a>
+      <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>
