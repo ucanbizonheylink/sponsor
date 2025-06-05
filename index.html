@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Uçan Bizon</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
- 
   <style>
     .card {
       opacity: 0;
@@ -27,10 +26,8 @@
       <img src="assets/img/logo.png" alt="Uçan Bizon Logo" />
     </div>
     <nav class="social-links" id="social-links">
-      <a href="https://t.me/BizonAviator"><i class="fa-brands fa-telegram"></i>Telegram</a>
-      <a href="t.me/bizonkod"><i class="fa-brands fa-telegram"></i>Kod Kanalımız</a>
-      <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
-      <a href="https://t.me/kendihalindegrafikci"><i class="fa-brands fa-telegram"></i> İletişim</a></nav>
+      <!-- Sosyal linkler buraya JS ile eklenecek -->
+    </nav>
   </header>
 
   <!-- REKLAM ALANI -->
@@ -47,17 +44,9 @@
   </section>
 
   <!-- KARTLAR -->
-<section class="card-list">
-<div class="card">
-  <img src="assets/img/logo1.png" alt="SİTE EKLENECEK" class="card-icon" />
-  <h2>SİTE EKLENECEK</h2>
-  <p>Herhangi Sponsorluk</p>
-  <p>Anlaşmamız Henüz</p>
-  <p>Bulunmamaktaıdr.</p>
-  <a href="#" class="btn">Giriş Yap</a>
-  <a href="https://t.me/ucanbizon" class="card-link">VİP SPONSOR</a>
-</div>
-</section>
+  <section class="card-list" id="card-list">
+    <!-- Kartlar buraya JS ile eklenecek -->
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -66,62 +55,68 @@
     </div>
     <p>Copyright © 2024 - Uçan Bizon</p>
     <div class="footer-social" id="footer-social">
- <a href="https://t.me/BizonAviator"><i class="fa-brands fa-telegram"></i>Telegram</a>
-      <a href="t.me/bizonkod"><i class="fa-brands fa-telegram"></i>Kod Kanalımız</a>
-      <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
-      <a href="https://t.me/kendihalindegrafikci"><i class="fa-brands fa-telegram"></i> İletişim</a></div>
+      <!-- Footer sosyal linkler buraya JS ile eklenecek -->
+    </div>
   </footer>
 
   <!-- DİNAMİK VERİ YÜKLEME -->
   <script>
-    const data = JSON.parse(localStorage.getItem("ucanbizonData")) || { socialLinks: [], cards: [] };
-
-    // Üst sosyal linkler
-    const socialLinksNav = document.getElementById("social-links");
-    data.socialLinks.forEach(link => {
-      const a = document.createElement("a");
-      a.href = link.href;
-      a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
-      socialLinksNav.appendChild(a);
-    });
-
-    // Kartlar
-    const cardList = document.getElementById("card-list");
-    data.cards.forEach(card => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <img src="${card.icon}" alt="${card.title}" class="card-icon" />
-        <h2>${card.title}</h2>
-        ${card.descriptions.map(desc => `<p>${desc}</p>`).join("")}
-        <a href="${card.btnHref}" class="btn">${card.btnText}</a>
-        <a href="${card.linkHref}" class="card-link">${card.linkText}</a>
-      `;
-      cardList.appendChild(div);
-    });
-
-    // Footer sosyal linkler
-    const footerSocial = document.getElementById("footer-social");
-    data.socialLinks.forEach(link => {
-      const a = document.createElement("a");
-      a.href = link.href;
-      a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
-      footerSocial.appendChild(a);
-    });
-
-    // Görünme animasyonu
-    const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
+    fetch('assets/data/data.json')
+      .then(response => {
+        if (!response.ok) throw new Error('JSON dosyası yüklenemedi');
+        return response.json();
+      })
+      .then(data => {
+        // Sosyal linkleri ekle (Header)
+        const socialLinksNav = document.getElementById('social-links');
+        data.socialLinks.forEach(link => {
+          const a = document.createElement('a');
+          a.href = link.href;
+          a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+          socialLinksNav.appendChild(a);
         });
-      },
-      { threshold: 0.2 }
-    );
-    cards.forEach((card) => observer.observe(card));
+
+        // Kartları ekle
+        const cardList = document.getElementById('card-list');
+        data.cards.forEach(card => {
+          const div = document.createElement('div');
+          div.className = 'card';
+          div.innerHTML = `
+            <img src="${card.icon}" alt="${card.title}" class="card-icon" />
+            <h2>${card.title}</h2>
+            ${card.descriptions.map(desc => `<p>${desc}</p>`).join('')}
+            <a href="${card.btnHref}" class="btn">${card.btnText}</a>
+            <a href="${card.linkHref}" class="card-link">${card.linkText}</a>
+          `;
+          cardList.appendChild(div);
+        });
+
+        // Footer sosyal linkler
+        const footerSocial = document.getElementById('footer-social');
+        data.socialLinks.forEach(link => {
+          const a = document.createElement('a');
+          a.href = link.href;
+          a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+          footerSocial.appendChild(a);
+        });
+
+        // Görünme animasyonu için IntersectionObserver
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        cards.forEach(card => observer.observe(card));
+      })
+      .catch(error => {
+        console.error('Hata:', error);
+      });
   </script>
 </body>
 </html>
