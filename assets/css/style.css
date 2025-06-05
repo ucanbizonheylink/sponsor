@@ -32,12 +32,17 @@ body {
 
 /* Sosyal Linkler */
 .social-links {
+  color: #f1c40f;
   display: flex;
-  gap: 20px;
+  gap: 6px;
+  padding: 4px 8px;
+  font-weight: 600;
+  font-size: 14px;
   white-space: nowrap;
   max-width: 60vw;
   justify-content: flex-end;
   align-items: center;
+  transition: color 0.3s ease;
   overflow: hidden;
 }
 
