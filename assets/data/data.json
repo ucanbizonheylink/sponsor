@@ -1,0 +1,29 @@
+{
+  "socialLinks": [
+    {
+      "href": "https://t.me/ucanbizon",
+      "icon": "fa-brands fa-telegram",
+      "text": "Telegram"
+    },
+    {
+      "href": "https://instagram.com/ucanbizon",
+      "icon": "fa-brands fa-instagram",
+      "text": "Instagram"
+    }
+  ],
+  "cards": [
+    {
+      "icon": "assets/img/logo1.png",
+      "title": "SİTE EKLENECEK",
+      "descriptions": [
+        "Herhangi Sponsorluk",
+        "Anlaşmamız Henüz",
+        "Bulunmamaktadır."
+      ],
+      "btnText": "Giriş Yap",
+      "btnHref": "#",
+      "linkText": "VİP SPONSOR",
+      "linkHref": "https://t.me/ucanbizon"
+    }
+  ]
+}
